@@ -25,9 +25,9 @@ model input :
  3. investment status, and reward and value function
  
 model output(action prediction):
-1. hold
-2. buy
-3. sell
+1. buy(entry to a new trade)
+2. sell(exit last trade)
+3. hold(do not do nothing)
 
 
 ![nn](https://github.com/loliksamuel/py-ML-rl-trade/blob/master/files/output/nn.png)
