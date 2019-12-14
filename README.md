@@ -27,9 +27,8 @@ model input :
  
 model output(action prediction):
 1. buy-entry to a new trade
-2. sell-exit last trade 
-3. hold-do nothing 
-
+2. hold-do nothing 
+3. sell-exit last trade 
 
 ![nn](https://github.com/loliksamuel/py-ML-rl-trade/blob/master/files/output/nn.png)
 
