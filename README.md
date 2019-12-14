@@ -19,15 +19,16 @@ the model get updated every few days.
 
 As illustrated in below figure
 The agent will use the  above value function to select which state to choose at each step. The agent will always take the state with the biggest value.
+
 model input :
  1. historical stock data 
  2. historicsl market data 
  3. investment status, and reward and value function
  
 model output(action prediction):
-1. buy(entry to a new trade)
-2. sell(exit last trade)
-3. hold(do not do nothing)
+1. buy-entry to a new trade
+2. sell-exit last trade 
+3. hold-do nothing 
 
 
 ![nn](https://github.com/loliksamuel/py-ML-rl-trade/blob/master/files/output/nn.png)
