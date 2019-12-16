@@ -96,6 +96,17 @@ epsilon_decay- used to decrease the number of explorations as it gets good at tr
 	- Anaconda, Python, IPython, and Jupyter notebooks
 	- Installing packages
 	- `conda` environments
+	
+- Install on Virtualenv (pip packages are defined on [requirements.txt](requirements.txt)):
+```
+# Create a virtual environment
+virtualenv -p /usr/local/bin/python3 pytrade
+
+# activate and install packages
+source pytrade/bin/activate
+pip install -r requirements.txt
+
+```
 
 - Download data
 	- training and test csv files from [Yahoo! Finance](https://ca.finance.yahoo.com/quote/%5EGSPC/history?p=%5EGSPC) 
