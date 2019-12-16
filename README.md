@@ -12,7 +12,7 @@ TD In plain English,
  means maximum future reward for this state and action (s,a) 
 is the immediate reward r plus maximum future reward for the next state
                  
-![max future reward](https://github.com/loliksamuel/py-ML-rl-trade/blob/master/files/output/max_future_reward.png)
+![max future reward](files/output/max_future_reward.png)
 
 the model get updated every few days.
 
@@ -30,7 +30,7 @@ model output(action prediction):
 2. hold-do nothing 
 3. sell-exit last trade 
 
-![nn](https://github.com/loliksamuel/py-ML-rl-trade/blob/master/files/output/nn.png)
+![nn](files/output/nn.png)
 
 
 
@@ -44,7 +44,7 @@ The policy network outputs an action daily
 the market returns the rewards of such actions (the profit)
 and all this data ( status,   amount of money gain or lost), sent to policy network to train
  
-![rl](https://github.com/loliksamuel/py-ML-rl-trade/blob/master/files/output/rl.png)
+![rl](files/output/rl.png)
 
 # Action
 there are 3 possible actions that the agent can take, hold, buy, sell
@@ -126,16 +126,16 @@ python backtest.py
 
 Some examples of results on test sets:
 
-![^GSPC 2015](https://github.com/edwardhdlu/q-trader/blob/master/images/^GSPC_2015.png)
-S&P 500, 2015. Profit of $431.04.
+-![^GSPC 2015](https://raw.githubusercontent.com/edwardhdlu/q-trader/master/images/%5EGSPC_2015.png)
+-S&P 500, 2015. Profit of $431.04.
 
-![BABA_2015](https://github.com/edwardhdlu/q-trader/blob/master/images/BABA_2015.png)
+![BABA_2015](https://raw.githubusercontent.com/edwardhdlu/q-trader/master/images/BABA_2015.png)
 Alibaba Group Holding Ltd, 2015. Loss of $351.59.
 
-![AAPL 2016](https://github.com/edwardhdlu/q-trader/blob/master/images/AAPL_2016.png)
+![AAPL 2016](https://raw.githubusercontent.com/edwardhdlu/q-trader/master/images/AAPL_2016.png)
 Apple, Inc, 2016. Profit of $162.73.
 
-![GOOG_8_2017](https://github.com/edwardhdlu/q-trader/blob/master/images/GOOG_8_2017.png)
+![GOOG_8_2017](https://raw.githubusercontent.com/edwardhdlu/q-trader/master/images/GOOG_8_2017.png)
 Google, Inc, August 2017. Profit of $19.37.
 
 
