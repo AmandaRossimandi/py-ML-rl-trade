@@ -1,5 +1,7 @@
-import numpy as np
 import math
+import time
+import numpy as np
+from datetime import datetime
 import matplotlib.pyplot as plt
 
 # prints formatted price
@@ -14,7 +16,7 @@ def sigmoid(x):
 # We don't want random-seeding for reproducibilityy! We _want_ two runs to give different results, because we only
 # trust the hyper combo which consistently gives positive results.
 def seed( seed=None):
-    #np.random.seed(7)
+	#np.random.seed(7)
     pass
 
 
@@ -58,5 +60,29 @@ def plot_barchart(list, file="BT", title='BT', ylabel="Price", xlabel="Date", co
 	plt.ylabel(ylabel)
 	plt.title(title)
 	plt.savefig('files/output/' + file + '.png')
+
+
+def record_run_time(func):
+	"""
+	Helper decorator that records the runtime of a given function
+    """
+	def wrapper(*args, **kwargs):
+		print("Current time is: %s" % datetime.now().strftime('%H:%M:%S'))  # episodes=2 +features=252 takes 6 minutes
+		start_time = datetime.now()
+
+		# Run the actual function
+		func(*args, **kwargs)
+
+		now = datetime.now()
+		diff = now - start_time
+		minutes = (diff.seconds // 60) % 60
+		output = """
+Current time is: %s 
+Runtime: %s (%d minutes)
+Finished run.
+        """ % (now.strftime('%H:%M:%S'), diff, minutes)
+		print(output)
+
+	return wrapper
 
 
