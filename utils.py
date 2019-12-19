@@ -1,8 +1,11 @@
 import math
 import time
+import os
 import numpy as np
+import pandas as pd
 from datetime import datetime
 import matplotlib.pyplot as plt
+
 
 # prints formatted price
 def formatPrice(n):
@@ -18,17 +21,6 @@ def sigmoid(x):
 def seed( seed=None):
 	#np.random.seed(7)
     pass
-
-
-# returns the vector containing stock data from a fixed file
-def getStockDataVec(key):
-	vec = []
-	lines = open("files/input/" + key + ".csv", "r").read().splitlines()
-	column_close_price=4
-	for line in lines[1:]:
-		vec.append(float(line.split(",")[column_close_price]))
-
-	return vec
 
 
 def plot_histogram(x, bins, title, xlabel, ylabel, xmin=None, xmax=None):

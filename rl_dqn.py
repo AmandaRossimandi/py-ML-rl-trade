@@ -1,6 +1,8 @@
 import numpy as np
+import pandas as pd
 from dqn import Dqn
-from utils import seed, getStockDataVec, plot_barchart, record_run_time
+from utils import seed, plot_barchart, record_run_time
+from consts import INPUT_CSV_TEMPLATE
 
 
 ##do not touch those params
@@ -15,7 +17,10 @@ np.set_printoptions(suppress=True)  # prevent numpy exponential #notation on pri
 def run_dqn(stock_name, num_features, num_neurons, episodes, batch_size, random_action_decay, future_reward_importance):
     # episodes=2 +features=252 takes 6 minutes
     seed()
-    data                = getStockDataVec(stock_name)#https://www.kaggle.com/camnugent/sandp500
+
+    # returns a list of stocks closing price
+    df = pd.read_csv(INPUT_CSV_TEMPLATE % stock_name)
+    data =  df['Close'].astype(float).tolist()  #https://www.kaggle.com/camnugent/sandp500
     l                   = len(data) - 1
 
     print(f'Running {episodes} episodes, on {stock_name} (has {l} rows), features={num_features}, batch={batch_size}, random_action_decay={random_action_decay}')
