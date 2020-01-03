@@ -115,8 +115,8 @@ pip install -r requirements.txt
 - Bring other features if u have
 
 - Train model. for good results run:
-	- with minimum 200 episodes 
-	- on all data (not just 2011) 
+	- with minimum 20,000 episodes (takes 24 hours on 2 ghz machine)
+	- on all data (or on 2011 which is interesting year) 
 	- with GPU  https://www.paperspace.com 
 ```
 python rl_dqn.py
