@@ -126,6 +126,11 @@ pip install -r requirements.txt
 ```
 python rl_dqn.py
 ```
+or with docker
+```
+docker build -t app:1.0 .
+docker run app:1.0
+```
 
 - See 3 plots generated 
 	- episode vs profits
