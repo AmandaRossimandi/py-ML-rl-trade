@@ -100,9 +100,14 @@ epsilon_decay- used to decrease the number of explorations as it gets good at tr
 - Install on Virtualenv (pip packages are defined on [requirements.txt](requirements.txt)):
 ```
 # Create a virtual environment
-virtualenv -p /usr/local/bin/python3 pytrade
+virtualenv -p /usr/local/bin/python3 .
+or 
+python3 -m venv .
 
-# activate and install packages
+# create requirements.txt
+pip freeze > requirements.txt
+
+# install packages
 source pytrade/bin/activate
 pip install -r requirements.txt
 
