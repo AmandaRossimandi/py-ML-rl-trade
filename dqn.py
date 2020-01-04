@@ -57,8 +57,8 @@ class Dqn:
 
                 #print(f'row #{t} {agent.actions[action]} @{data[t]}, state1={state}, state2={next_state}, reward={reward}')
 
-                agent.remember(state, action, reward, next_state,
-                               done)  # store contents of memory in buffer for future learning
+                # store contents of memory in buffer for future learning
+                agent.remember(state, action, reward, next_state, done)
                 state = next_state
 
                 if done:
@@ -123,7 +123,6 @@ class Dqn:
         data_block = data[from_ix:to_ix + 1]
         res = []
         for i in range(num_features):
-            # res.append(sigmoid(block[i + 1] - block[i]))
             res.append(np.log(data_block[i + 1] / data_block[i]))
         # add features
         # add cyclic feature(sin, cos)

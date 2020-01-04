@@ -1,4 +1,3 @@
-import keras
 from keras.models import Sequential
 from keras.models import load_model
 from keras.layers import Dense
@@ -80,7 +79,6 @@ class Agent:
 
         if self.epsilon > self.epsilon_min:
             self.epsilon *= self.epsilon_decay
-
             # print(f'epsilon={self.epsilon}')
 
     # increases learning speed with mini-batches

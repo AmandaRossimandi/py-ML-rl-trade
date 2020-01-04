@@ -2,24 +2,12 @@ from keras.models import load_model
 from ai_agent import Agent
 from dqn import Dqn
 from utils import *
-import sys
 import argparse
-
-
-#def bt(data, num_features, use_existing_model, model_name):
-#    dqn          = Dqn()
-#    agent        = Agent(num_features, use_existing_model, model_name)
-#    state            = dqn.get_state(data, num_features, num_features)
-#    total_profits    = 0
-#    total_holds      = 0
-#    total_buys       = 1
-#    total_sells      = 0
-#    l = len(data) - 1
 
 
 def bt(data, num_features, use_existing_model, model_name):
     dqn = Dqn()
-    #dqn.open_orders = [data[0]]
+    dqn.open_orders = [data[0]]
     agent = Agent(num_features, use_existing_model, model_name)
     state = dqn.get_state(data, num_features, num_features)
     total_profits = 0
@@ -61,8 +49,8 @@ def main():
     :return:
     """
     parser = argparse.ArgumentParser()
-    parser.add_argument('--stock_name', '-s', type=str, default='^GSPC_1970_2018') #^GSPC_2011  GSPC_2019 GSPC_1970_2019 GSPC_1970_2018
-    parser.add_argument('--model_name', '-mn', type=str, default='model_ep1800') # #model_ep0, model_ep10, model_ep20, model_ep30
+    parser.add_argument('--stock_name', '-s', type=str, default='^GSPC_2011') #^GSPC_2011  GSPC_2019 GSPC_1970_2019 GSPC_1970_2018
+    parser.add_argument('--model_name', '-mn', type=str, default='model_ep20000') # #model_ep0, model_ep10, model_ep20, model_ep30
     parser.add_argument('--trading_fee', '-tf', type=float, default=0.)
 
     args = parser.parse_args()
@@ -70,8 +58,8 @@ def main():
     model_name = args.model_name
     trading_fee = args.trading_fee
 
-    model_inst    = load_model("files/output/" + model_name)
-    num_features   = model_inst.layers[0].input.shape.as_list()[1]
+    model_inst = load_model("files/output/" + model_name)
+    num_features = model_inst.layers[0].input.shape.as_list()[1]
     use_existing_model = True
     data = getStockDataVec(stock_name)
     l = len(data) - 1
