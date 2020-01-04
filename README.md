@@ -1,7 +1,7 @@
 Project motivation:
 1. Including side-information in MDP RL framework
 2. Uncertainty Modeling by applying high-level stochastic processes (Ito' calculos, SDE, etc.) 
-3. Applying cutting-edge technique from DRL domain: Trust-regions, PPO to ACKTR. 
+3. Applying cutting-edge techniques from DRL domain, such as: trust-regions, PPO to ACKTR and more. 
 
 
 
@@ -188,5 +188,3 @@ https://quantdare.com/deep-reinforcement-trading/
 [introduction-to-reinforcement-learning](https://medium.com/free-code-camp/a-brief-introduction-to-reinforcement-learning-7799af5840db)
 
 [other python resources](https://github.com/topics/trading?l=python)
-
-
