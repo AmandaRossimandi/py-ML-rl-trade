@@ -1,3 +1,9 @@
+Project motivation:
+1. Including side-information in MDP RL framework
+2. Uncertainty Modeling by applying high-level stochastic processes (Ito' calculos, SDE, etc.) 
+3. Applying cutting-edge technique from DRL domain: Trust-regions, PPO to ACKTR. 
+
+
 
 # Data
 from https://finance.yahoo.com/quote/%5EGSPC?p=^GSPC
