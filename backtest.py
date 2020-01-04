@@ -6,31 +6,50 @@ import sys
 import argparse
 
 
+#def bt(data, num_features, use_existing_model, model_name):
+#    dqn          = Dqn()
+#    agent        = Agent(num_features, use_existing_model, model_name)
+#    state            = dqn.get_state(data, num_features, num_features)
+#    total_profits    = 0
+#    total_holds      = 0
+#    total_buys       = 1
+#    total_sells      = 0
+#    l = len(data) - 1
+
+
 def bt(data, num_features, use_existing_model, model_name):
-    dqn          = Dqn()
-    agent        = Agent(num_features, use_existing_model, model_name)
-    state            = dqn.get_state(data, num_features, num_features)
-    total_profits    = 0
-    total_holds      = 0
-    total_buys       = 1
-    total_sells      = 0
+    dqn = Dqn()
+    #dqn.open_orders = [data[0]]
+    agent = Agent(num_features, use_existing_model, model_name)
+    state = dqn.get_state(data, num_features, num_features)
+    total_profits = 0
+    total_holds = 0
+    total_buys = 1
+    total_sells = 0
+    total_notvalid = 0
     l = len(data) - 1
 
-    for t in range(num_features,l):
+    for t in range(num_features, l):
 
-        action = agent.choose_best_action(state)#it will always predict
+        action = agent.choose_best_action(state)  # it will always predict
 
-        reward, total_profits, total_holds, total_buys, total_sells = dqn.execute_action (action, data[t], t, total_profits, total_holds, total_buys, total_sells)
+        reward, total_profits, total_holds, total_buys, total_sells, total_notvalid = \
+            dqn.execute_action(action, data[t], t, total_profits, total_holds, total_buys, total_sells, total_notvalid)
 
         done = True if t == l - 1 else False
 
         next_state = dqn.get_state(data, t + 1, num_features)
-        print(f'row #{t} {agent.actions[action]} @{data[t]}, state1={state}, state2={next_state}, reward={reward}')
+        #print(f'row #{t} {agent.actions[action]} @{data[t]}, state1={state}, state2={next_state}, reward={reward}')
         state = next_state
 
         if done:
+            # sell position at end of episode
+            reward, total_profits, total_holds, total_buys, total_sells, total_notvalid = \
+                dqn.execute_action(2, data[t+1], t+1, total_profits, total_holds, total_buys, total_sells,
+                                   total_notvalid)
             print("-----------------------------------------")
-            print(f'Total Profit: {formatPrice(total_profits)} , Total hold/buy/exit trades: {total_holds} / {total_buys} / {total_sells}')
+            print(f'Total Profit: {formatPrice(total_profits*100)} ,'
+                  f' Total hold/buy/sell/notvalid trades: {total_holds} / {total_buys} / {total_sells} / {total_notvalid}')
             print("-----------------------------------------")
 
 
@@ -58,7 +77,7 @@ def main():
     l = len(data) - 1
 
     print(f'starting back-testing model {model_name} on {stock_name} (file has {l} rows), features = {num_features} ')
-    bt   (data, num_features, use_existing_model, model_name)
+    bt(data, num_features, use_existing_model, model_name)
     print(f'finished back-testing model {model_name} on {stock_name} (file has {l} rows), features = {num_features} ')
 
 

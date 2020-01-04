@@ -9,18 +9,23 @@ import matplotlib.pyplot as plt
 
 # prints formatted price
 def formatPrice(n):
-	return ("-%" if n < 0 else " %") + "{0:.3f}".format(abs(n))
+    return ("-%" if n < 0 else " %") + "{0:.3f}".format(abs(n))
+
 
 # returns the sigmoid
 def sigmoid(x):
-	return 1 / (1 + math.exp(-x))
+    return 1 / (1 + math.exp(-x))
 
 
-# We don't want random-seeding for reproducibilityy! We _want_ two runs to give different results, because we only
-# trust the hyper combo which consistently gives positive results.
-def seed( seed=None):
-	#np.random.seed(7)
-    pass
+# returns the vector containing stock data from a fixed file
+def getStockDataVec(key):
+    vec = []
+    lines = open("files/input/" + key + ".csv", "r").read().splitlines()
+    column_close_price = 4
+    for line in lines[1:]:
+        vec.append(float(line.split(",")[column_close_price]))
+
+    return vec
 
 
 def plot_histogram(x, bins, title, xlabel, ylabel, xmin=None, xmax=None):

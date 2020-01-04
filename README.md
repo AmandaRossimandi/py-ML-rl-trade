@@ -130,6 +130,11 @@ pip install -r requirements.txt
 	- on all data (or on 2011 which is interesting year) 
 	- with GPU  https://www.paperspace.com 
 ```
+python3 -m venv .
+pip freeze > requirements.txt
+pip install -r requirements.txt
+docker build -t app:1.0 .
+docker run app:1.0
 python rl_dqn.py
 ```
 or with docker
