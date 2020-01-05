@@ -43,7 +43,7 @@ COPY requirements.txt /app/
 RUN pip install -r requirements.txt
 
 #CMD [ "python", "./rl_dqn.py" ]
-
+#python rl_dqn.py   -na 'test_sinus' -ne 2 -nf 20 -nn 64 -nb 20
 
 
 
