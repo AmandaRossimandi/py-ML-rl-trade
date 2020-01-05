@@ -13,8 +13,13 @@ WORKDIR /app
 # RUN pip install --upgrade pip \
 #  && pip install -r requirements.txt
 
-RUN apt-get update \
-     && apt-get install -y
+# Update aptitude with new repo
+RUN apt-get update
+
+# Install software
+RUN apt-get install -y \
+    git
+
 #      && anaconda-navigator=1.9.7 \
 #      && anaconda-project=0.8.3 \
 #      && conda=4.8.0
@@ -28,11 +33,14 @@ RUN apt-get update \
 #         pycurl==7.43.0.3
 #         xlwings==0.16.3
 
-COPY *.py /app/
-COPY files /app/files
+# Clone the conf files into the docker container
+RUN git clone https://github.com/loliksamuel/py-ML-rl-trade.git
+# COPY *.py /app/
+# COPY files /app/files
 
 #docker run -it <image_id> /bin/bash
-RUN pip install -r requirements.txt
+
+#RUN pip install -r requirements.txt
 
 CMD [ "python", "./rl_dqn.py" ]
 
