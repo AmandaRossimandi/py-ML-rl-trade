@@ -60,12 +60,12 @@ if __name__ == "__main__":
     # If=0 agent will only learn to consider current rewards. if=1 it will make it strive for a long-term high reward.
 
     args = parser.parse_args()
-    stock_name = args.stock_name
-    num_features = args.num_features
-    num_neurons = args.num_neurons
-    episodes = args.episodes
-    batch_size = args.batch_size
-    random_action_decay = args.random_action_decay
+    stock_name               = args.stock_name
+    num_features             = args.num_features
+    num_neurons              = args.num_neurons
+    episodes                 = args.episodes
+    batch_size               = args.batch_size
+    random_action_decay      = args.random_action_decay
     future_reward_importance = args.future_reward_importance
 
     run_dqn(stock_name=stock_name, num_features=num_features, num_neurons=num_neurons, episodes=episodes,

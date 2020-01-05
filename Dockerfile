@@ -51,5 +51,6 @@ RUN pip install -r requirements.txt
 #1. docker build -t app:1.0 .
 #2. docker run -it <image_id> /bin/bash
 #3. python rl_dqn.py
+#4. python backtest.py
 #4. docker run app:1.0 .
 
