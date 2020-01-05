@@ -137,11 +137,7 @@ pip install -r requirements.txt
 #5. expect to earn x$
 #4. docker run app:1.0 .
 ```
-or with docker
-```
-docker build -t app:1.0 .
-docker run app:1.0
-```
+ 
 
 - See 3 plots generated 
 	- episode vs profits
