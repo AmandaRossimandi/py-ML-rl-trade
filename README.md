@@ -108,7 +108,7 @@ epsilon_decay- used to decrease the number of explorations as it gets good at tr
 # Create a virtual environment
 virtualenv -p /usr/local/bin/python3 .
 or 
-python3 -m venv .
+python -m venv .
 
 # create requirements.txt
 pip freeze > requirements.txt
@@ -130,12 +130,12 @@ pip install -r requirements.txt
 	- on all data (or on 2011 which is interesting year) 
 	- with GPU  https://www.paperspace.com 
 ```
-python3 -m venv .
-pip freeze > requirements.txt
-pip install -r requirements.txt
-docker build -t app:1.0 .
-docker run app:1.0
-python rl_dqn.py
+#1. docker build -t app:1.0 .
+#2. docker run -it <image_id> /bin/bash
+#3. python rl_dqn.py   -s 'test_sinus' -ne 2 -nf 20 -nn 64 -bs 20
+#4. python backtest.py -s 'test_sinus' -mn 'model_ep2' -tf 0.
+#5. expect to earn x$
+#4. docker run app:1.0 .
 ```
 or with docker
 ```

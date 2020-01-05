@@ -52,7 +52,7 @@ def main():
     parser.add_argument('--stock_name', '-s', type=str, default='^GSPC_2011') #^GSPC_2011  GSPC_2019 GSPC_1970_2019 GSPC_1970_2018
     parser.add_argument('--model_name', '-mn', type=str, default='model_ep20000') # #model_ep0, model_ep10, model_ep20, model_ep30
     parser.add_argument('--trading_fee', '-tf', type=float, default=0.)
-
+    #python backtest.py -s 'test_sinus' -mn 'model_ep2' -tf 0.
     args = parser.parse_args()
     stock_name = args.stock_name
     model_name = args.model_name
