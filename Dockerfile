@@ -37,13 +37,19 @@ RUN apt-get install -y \
 RUN git clone https://github.com/loliksamuel/py-ML-rl-trade.git
 # COPY *.py /app/
 # COPY files /app/files
-WORKDIR "py-ML-rl-trade"
-
-#docker build -t app:1.0 .
-#docker run -it <image_id> /bin/bash
-#docker run app:1.0 .
+WORKDIR py-ML-rl-trade
 
 RUN pip install -r requirements.txt
 
-CMD [ "python", "./rl_dqn.py" ]
+#CMD [ "python", "./rl_dqn.py" ]
+
+
+
+
+#how to run ?
+#----------------------
+#1. docker build -t app:1.0 .
+#2. docker run -it <image_id> /bin/bash
+#3. python rl_dqn.py
+#4. docker run app:1.0 .
 
