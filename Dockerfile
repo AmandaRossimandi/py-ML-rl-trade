@@ -2,8 +2,6 @@ FROM tensorflow/tensorflow:latest-py3-jupyter
 
 MAINTAINER lolik samuel
 
-#ADD ./requirements.txt /app/
-
 WORKDIR /app
 
 #RUN apt-get update  && apt-get install -y build-essential mpich libpq-dev
@@ -34,12 +32,15 @@ RUN apt-get install -y \
 #         xlwings==0.16.3
 
 # Clone the conf files into the docker container
-RUN git clone https://github.com/loliksamuel/py-ML-rl-trade.git
-# COPY *.py /app/
-# COPY files /app/files
-WORKDIR py-ML-rl-trade
+#RUN git clone https://github.com/loliksamuel/py-ML-rl-trade.git
+# WORKDIR py-ML-rl-trade
+COPY *.py /app/
+COPY files /app/files
+COPY requirements.txt /app/
 
-RUN pip install -r requirements.txt
+
+
+#RUN pip install -r requirements.txt
 
 #CMD [ "python", "./rl_dqn.py" ]
 
