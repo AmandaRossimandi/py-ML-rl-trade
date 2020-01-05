@@ -49,9 +49,13 @@ RUN pip install -r requirements.txt
 #how to run ?
 #----------------------
 #1. docker build -t app:1.0 .
-#2. docker run -it <image_id> /bin/bash
-#3. python rl_dqn.py   -na 'test_sinus' -ne 2000 -nf 20 -nn 64 -nb 20
-#4. python backtest.py -na 'test_sinus' -mn 'model_ep2000' -tf 0.
-#5. expect to earn x$
-#4. docker run app:1.0 .
+#2. wait few minutes on 1st run(later it will be faster)
+#3. docker run -it <image_id> /bin/bash
+#4. python rl_dqn.py   -na 'test_sinus' -ne 2000 -nf 20 -nn 64 -nb 20
+#5. python backtest.py -na 'test_sinus' -mn 'model_ep2000' -tf 0.
+#6. expect to earn x$
+#7. python rl_dqn.py   -na '^GSPC_2011' -ne 20000 -nf 20 -nn 64 -nb 20
+#8. python backtest.py -na '^GSPC_2019' -mn 'model_ep20000' -tf 0.
+#9. expect to earn x$
+#10. docker run app:1.0 .
 
