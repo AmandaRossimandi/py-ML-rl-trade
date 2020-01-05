@@ -51,10 +51,10 @@ if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser()
     parser.add_argument('--stock_name'              , '-s' , type=str, default='test_sinus')  # ^GSPC_2001_2010  ^GSPC_1970_2018  ^GSPC_2011
-    parser.add_argument('--episodes'                , '-ne', type=int, default=20)  # (int) > 0 ,minimum 200 episodes for results. episode represent trade and learn on all data.
+    parser.add_argument('--num_episodes'            , '-ne', type=int, default=20)  # (int) > 0 ,minimum 200 episodes for results. episode represent trade and learn on all data.
     parser.add_argument('--num_features'            , '-nf', type=int, default=20)  # (int) > 0
     parser.add_argument('--num_neurons'             , '-nn', type=int, default=64)  # # (int) > 0
-    parser.add_argument('--batch_size'              , '-bs', type=int, default=20)  # (int) > 0 size of a batched sampled from replay buffer for training
+    parser.add_argument('--n_batch_size'            , '-nb', type=int, default=20)  # (int) > 0 size of a batched sampled from replay buffer for training
     parser.add_argument('--random_action_decay'            , type=float, default=0.99999)  # (float) 0-1
     parser.add_argument('--future_reward_importance'       , type=float, default=0.05)  # (float) 0-1 aka decay or discount rate, determines the importance of future rewards
     # If=0 agent will only learn to consider current rewards. if=1 it will make it strive for a long-term high reward.
@@ -64,11 +64,11 @@ if __name__ == "__main__":
     stock_name               = args.stock_name
     num_features             = args.num_features
     num_neurons              = args.num_neurons
-    episodes                 = args.episodes
-    batch_size               = args.batch_size
+    num_episodes             = args.episodes
+    n_batch_size             = args.batch_size
     random_action_decay      = args.random_action_decay
     future_reward_importance = args.future_reward_importance
 
-    run_dqn(stock_name=stock_name, num_features=num_features, num_neurons=num_neurons, episodes=episodes,
-            batch_size=batch_size, random_action_decay=random_action_decay,
+    run_dqn(stock_name=stock_name, num_features=num_features, num_neurons=num_neurons, episodes=num_episodes,
+            batch_size=n_batch_size, random_action_decay=random_action_decay,
             future_reward_importance=future_reward_importance)
