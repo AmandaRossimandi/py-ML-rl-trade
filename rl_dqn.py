@@ -51,14 +51,14 @@ if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser()
     parser.add_argument('--name_asset'              , '-na' , type=str, default='test_sinus')  # ^GSPC_2001_2010  ^GSPC_1970_2018  ^GSPC_2011    test_sinus
-    parser.add_argument('--num_episodes'            , '-ne', type=int, default=20)  # (int) > 0 ,minimum 20,000 episodes for results. episode represent trade and learn on all data.
+    parser.add_argument('--num_episodes'            , '-ne', type=int, default=20)  # (int) > 0 ,minimum 20,000 episodes for good results. episode represent trade and learn on all data.
     parser.add_argument('--num_features'            , '-nf', type=int, default=20)  # (int) > 0
     parser.add_argument('--num_neurons'             , '-nn', type=int, default=64)  # (int) > 0
     parser.add_argument('--n_batch_size'            , '-nb', type=int, default=20)  # (int) > 0 size of a batched sampled from replay buffer for training
     parser.add_argument('--random_action_decay'            , type=float, default=0.99999)  # (float) 0-1
     parser.add_argument('--future_reward_importance'       , type=float, default=0.05)  # (float) 0-1 aka decay or discount rate, determines the importance of future rewards
     # If=0 agent will only learn to consider current rewards. if=1 it will make it strive for a long-term high reward.
-    #python rl_dqn.py -s 'test_sinus' -nf 20 -nn 64 -e 2 -bs 20
+    #python rl_dqn.py -na 'test_sinus' -nf 20 -nn 64 -ne 2 -bs 20
 
     args = parser.parse_args()
     name_asset               = args.name_asset
