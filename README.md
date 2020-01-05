@@ -129,14 +129,7 @@ pip install -r requirements.txt
 	- with minimum 20,000 episodes (takes 24 hours on 2 ghz machine)
 	- on all data (or on 2011 which is interesting year) 
 	- with GPU  https://www.paperspace.com 
-```
-#1. docker build -t app:1.0 .
-#2. docker run -it <image_id> /bin/bash
-#3. python rl_dqn.py   -s 'test_sinus' -ne 2000 -nf 20 -nn 64 -bs 20
-#4. python backtest.py -s 'test_sinus' -mn 'model_ep2000' -tf 0.
-#5. expect to earn x$
-#4. docker run app:1.0 .
-```
+    - with dockerfile
  
 
 - See 3 plots generated 

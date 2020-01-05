@@ -50,7 +50,7 @@ if __name__ == "__main__":
 
     import argparse
     parser = argparse.ArgumentParser()
-    parser.add_argument('--stock_name'              , '-s' , type=str, default='test_sinus')  # ^GSPC_2001_2010  ^GSPC_1970_2018  ^GSPC_2011
+    parser.add_argument('--name_asset'              , '-na' , type=str, default='test_sinus')  # ^GSPC_2001_2010  ^GSPC_1970_2018  ^GSPC_2011
     parser.add_argument('--num_episodes'            , '-ne', type=int, default=20)  # (int) > 0 ,minimum 200 episodes for results. episode represent trade and learn on all data.
     parser.add_argument('--num_features'            , '-nf', type=int, default=20)  # (int) > 0
     parser.add_argument('--num_neurons'             , '-nn', type=int, default=64)  # # (int) > 0
@@ -61,14 +61,14 @@ if __name__ == "__main__":
     #python rl_dqn.py -s 'test_sinus' -nf 20 -nn 64 -e 2 -bs 20
 
     args = parser.parse_args()
-    stock_name               = args.stock_name
+    name_asset               = args.name_asset
     num_features             = args.num_features
     num_neurons              = args.num_neurons
-    num_episodes             = args.episodes
-    n_batch_size             = args.batch_size
+    num_episodes             = args.num_episodes
+    n_batch_size             = args.n_batch_size
     random_action_decay      = args.random_action_decay
     future_reward_importance = args.future_reward_importance
 
-    run_dqn(stock_name=stock_name, num_features=num_features, num_neurons=num_neurons, episodes=num_episodes,
+    run_dqn(stock_name=name_asset, num_features=num_features, num_neurons=num_neurons, episodes=num_episodes,
             batch_size=n_batch_size, random_action_decay=random_action_decay,
             future_reward_importance=future_reward_importance)
