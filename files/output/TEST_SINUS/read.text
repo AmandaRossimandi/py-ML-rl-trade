@@ -1,0 +1,1 @@
+python rl_dqn.py   -na 'test_sinus' -ne 2000 -nf 20 -nn 64 -nb 20  (340min@t2, 225min@c5, profit161%)
