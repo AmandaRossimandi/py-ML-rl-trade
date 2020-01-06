@@ -131,15 +131,19 @@ pip install -r requirements.txt
 	- with GPU  https://www.paperspace.com 
     - with dockerfile
     
-- Docker
+- Docker create image
     - docker build -t app:1.0 .
-    - wait few minutes on 1st run(later it will be faster)
+    - wait few minutes on 1st attempt to make this image(later it will be faster)
+ 
+- Docker run container(2 options)   
+    - docker run --rm <yourImageName>  -na 'test_sinus' -ne 2000 -nf 20 -nn 64 -nb 20  (300 min)
+    - or....
     - docker run -it <image_id> /bin/bash
-    - python rl_dqn.py   -na 'test_sinus' -ne 2000 -nf 20 -nn 64 -nb 20  (60 min)
+    - python rl_dqn.py   -na 'test_sinus' -ne 2000 -nf 20 -nn 64 -nb 20  (300 min)
     - python backtest.py -na 'test_sinus' -mn 'model_ep2000' -tf 0.       (1 min, total profit : y$, z buys, z sells)
-    - python rl_dqn.py   -na '^GSPC_2011' -ne 20000 -nf 20 -nn 64 -nb 20 (2000 min)
+    - python rl_dqn.py   -na '^GSPC_2011' -ne 20000 -nf 20 -nn 64 -nb 20 (300 min)
     - python backtest.py -na '^GSPC_2019' -mn 'model_ep20000' -tf 0.     (1 min, total profit : x$, z buys, z sells)
-    - docker run --rm <yourImageName>  -na 'test_sinus' -ne 2000 -nf 20 -nn 64 -nb 20
+    
  
 
 - See 3 plots generated 
