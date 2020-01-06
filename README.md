@@ -138,9 +138,9 @@ pip install -r requirements.txt
 - Docker run container(2 options)   
     - docker run -it <yourImageName> /bin/bash
     - python rl_dqn.py   -na 'test_sinus' -ne 2000 -nf 20 -nn 64 -nb 20  (340min@t2, 225min@c5, profit161%)
-    - python backtest.py -na 'test_sinus' -mn 'model_ep2000' -tf 0.      (1 min, total profit : y$, z buys, z sells)
+    - python backtest.py -na 'test_sinus' -nm 'model_ep2000' -tf 0.      (1 min, total profit : y$, z buys, z sells)
     - python rl_dqn.py   -na '^GSPC_2011' -ne 20000 -nf 20 -nn 64 -nb 20 (1440min@pc)
-    - python backtest.py -na '^GSPC_2011' -mn 'model_ep20000' -tf 0.     (1 min, total profit : x$, z buys, z sells)
+    - python backtest.py -na '^GSPC_2011' -nm 'model_ep20000' -tf 0.     (1 min, total profit : x$, z buys, z sells)
     - or....   
     - docker run <yourImageName>  -na 'test_sinus' -ne 2000 -nf 20 -nn 64 -nb 20  (300 min)
  
