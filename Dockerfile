@@ -43,7 +43,7 @@ COPY requirements.txt /app/
 RUN pip install -r requirements.txt
 
 # CMD ["python","rl_dqn.py"]
-ENTRYPOINT ["python","./rl_dqn.py" ]
+# ENTRYPOINT ["python","./rl_dqn.py" ]
 
 
 
