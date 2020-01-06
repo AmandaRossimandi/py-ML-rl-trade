@@ -1,0 +1,2 @@
+python rl_dqn.py   -na '^GSPC_2011' -ne 20000 -nf 20 -nn 64 -nb 20  (1440min@c5, profit ?%)
+python backtest.py -na '^GSPC_2011' -nm 'model_ep20000' -tf 0. (profit : %125.664 , Total hold/buy/sell/notvalid trades: 0 / 55 / 55 / 123)
