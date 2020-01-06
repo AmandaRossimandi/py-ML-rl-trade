@@ -13,19 +13,19 @@ np.set_printoptions(suppress=True)  # prevent numpy exponential notation on prin
 
 
 @record_run_time
-def run_dqn(stock_name, num_features, num_neurons, episodes, batch_size, random_action_decay, future_reward_importance):
+def run_dqn(name_asset, n_features, n_neurons, n_episodes, batch_size, random_action_decay, future_reward_importance):
 
     # returns a list of stocks closing price
-    df = pd.read_csv(INPUT_CSV_TEMPLATE % stock_name)
+    df = pd.read_csv(INPUT_CSV_TEMPLATE % name_asset)
     data = df['Close'].astype(float).tolist()  #https://www.kaggle.com/camnugent/sandp500
     l = len(data) - 1
 
-    print(f'Running {episodes} episodes, on {stock_name} (has {l} rows), features={num_features}, '
+    print(f'Running {n_episodes} episodes, on {name_asset} (has {l} rows), features={n_features}, '
           f'batch={batch_size}, random_action_decay={random_action_decay}')
     dqn = Dqn()
     profit_vs_episode, trades_vs_episode, epsilon_vs_episode, model_name, num_trains, eps = \
-        dqn.learn(data, episodes, num_features, batch_size, USE_EXISTING_MODEL, RANDOM_ACTION_MIN,
-                  random_action_decay, num_neurons, future_reward_importance)
+        dqn.learn(data, n_episodes, n_features, batch_size, USE_EXISTING_MODEL, RANDOM_ACTION_MIN,
+                  random_action_decay, n_neurons, future_reward_importance)
 
     print(f'Learning completed. Backtest the model {model_name} on any stock')
     print('python backtest.py ')
@@ -36,8 +36,8 @@ def run_dqn(stock_name, num_features, num_neurons, episodes, batch_size, random_
     print(f'see plot of trades_vs_episode = {trades_vs_episode[:10]}')
     plot_barchart(trades_vs_episode, "episode vs trades", "episode vs trades", "total trades", "episode", 'blue')
 
-    text = f'{stock_name} ({l}), features={num_features}, nn={num_neurons},batch={batch_size}, ' \
-           f'epi={episodes}({num_trains}), eps={np.round(eps, 1)}({np.round(random_action_decay, 5)})'
+    text = f'{name_asset} ({l}), features={n_features}, nn={n_neurons},batch={batch_size}, ' \
+           f'epi={n_episodes}({num_trains}), eps={np.round(eps, 1)}({np.round(random_action_decay, 5)})'
     print(f'see plot of epsilon_vs_episode = {epsilon_vs_episode[:10]}')
     plot_barchart(epsilon_vs_episode	,  "episode vs epsilon", "episode vs epsilon",
                   "epsilon(probability of random action)", text, 'red')
@@ -50,7 +50,7 @@ if __name__ == "__main__":
 
     import argparse
     parser = argparse.ArgumentParser()
-    parser.add_argument('--name_asset'              , '-na' , type=str, default='test_sinus')  # ^GSPC_2001_2010  ^GSPC_1970_2018  ^GSPC_2011    test_sinus
+    parser.add_argument('--name_asset'              , '-na', type=str, default='test_sinus')  # ^GSPC_2001_2010  ^GSPC_1970_2018  ^GSPC_2011    test_sinus
     parser.add_argument('--num_episodes'            , '-ne', type=int, default=20)  # (int) > 0 ,minimum 20,000 episodes for good results. episode represent trade and learn on all data.
     parser.add_argument('--num_features'            , '-nf', type=int, default=20)  # (int) > 0
     parser.add_argument('--num_neurons'             , '-nn', type=int, default=64)  # (int) > 0
@@ -69,6 +69,6 @@ if __name__ == "__main__":
     random_action_decay      = args.random_action_decay
     future_reward_importance = args.future_reward_importance
 
-    run_dqn(stock_name=name_asset, num_features=num_features, num_neurons=num_neurons, episodes=num_episodes,
+    run_dqn(name_asset=name_asset, n_features=num_features, n_neurons=num_neurons, n_episodes=num_episodes,
             batch_size=n_batch_size, random_action_decay=random_action_decay,
             future_reward_importance=future_reward_importance)

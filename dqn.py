@@ -9,18 +9,18 @@ class Dqn:
         self.open_orders = []
         self.model_name = ''
 
-    def learn(self, data, episodes, num_features, batch_size, use_existing_model, random_action_min=0.1,
-              random_action_decay=0.99995, num_neurons=64, future_reward_importance=0.95):
+    def learn(self, data, n_episodes, n_features, batch_size, use_existing_model, random_action_min=0.1,
+              random_action_decay=0.99995, n_neurons=64, future_reward_importance=0.95):
 
-        agent = Agent(num_features, use_existing_model, '', random_action_min, random_action_decay, num_neurons,
+        agent = Agent(n_features, use_existing_model, '', random_action_min, random_action_decay, n_neurons,
                       future_reward_importance)
         l = len(data) - 1
         rewards_vs_episode = []
         profit_vs_episode = []
         trades_vs_episode = []
         epsilon_vs_episode = []
-        for episode in range(1, episodes + 1):
-            state = self.get_state(data, num_features, num_features)
+        for episode in range(1, n_episodes + 1):
+            state = self.get_state(data, n_features, n_features)
             total_profits = 0
             total_holds = 0
             total_buys = 1
@@ -29,7 +29,7 @@ class Dqn:
             # total_rewards    = 0
             self.open_orders = [data[0]]
 
-            for t in range(num_features, l):
+            for t in range(n_features, l):
 
                 action = agent.choose_best_action(state)  # tradeoff bw predict and random
                 # print(f'state={state}')
@@ -39,7 +39,7 @@ class Dqn:
 
                 done = True if t == l - 1 else False
 
-                next_state = self.get_state(data, t + 1, num_features)
+                next_state = self.get_state(data, t + 1, n_features)
 
                 #if len(self.open_orders) > 0:  # if long add next state return as reward
                 #print(action, agent.actions[action])
@@ -67,7 +67,7 @@ class Dqn:
                         self.execute_action(2, data[t+1], t+1, total_profits, total_holds, total_buys, total_sells,
                                             total_notvalid)
                     eps = np.round(agent.epsilon, 3)
-                    print(f'Episode {episode}/{episodes} Total Profit: {formatPrice(total_profits*100)},'
+                    print(f'Episode {episode}/{n_episodes} Total Profit: {formatPrice(total_profits * 100)},'
                           f' Total hold/buy/sell/notvalid trades: {total_holds} / {total_buys} / {total_sells} / {total_notvalid},'
                           f' probability of random action: {eps}')
                     print("---------------------------------------")
@@ -80,7 +80,7 @@ class Dqn:
                    agent.experience_replay(batch_size)  # fit
                 # clean memory ?
 
-        model_name = "files/output/model_ep" + str(episodes)
+        model_name = "files/output/model_ep" + str(n_episodes)
         agent.model.save(model_name)
         print(f'{model_name} saved')
         return profit_vs_episode, trades_vs_episode, epsilon_vs_episode, model_name, agent.num_trains, agent.epsilon
@@ -118,11 +118,11 @@ class Dqn:
         return reward, total_profits, total_holds, total_buys, total_sells, total_notvalid
 
     # returns a n-day state representation ending at time t of difference bw close prices. ex. [0.5,0.4,0.3,0.2]
-    def get_state(self, data, to_ix, num_features):
-        from_ix = to_ix - num_features
+    def get_state(self, data, to_ix, n_features):
+        from_ix = to_ix - n_features
         data_block = data[from_ix:to_ix + 1]
         res = []
-        for i in range(num_features):
+        for i in range(n_features):
             res.append(np.log(data_block[i + 1] / data_block[i]))
         # add features
         # add cyclic feature(sin, cos)

@@ -9,10 +9,10 @@ from collections import deque
 
 
 class Agent:
-    def __init__(self, num_features, use_existing_model=False, model_name="", random_action_min=0.1,
-                 random_action_decay=0.999995, num_neurons=64, future_reward_importance=0.95):
+    def __init__(self, n_features, use_existing_model=False, name_model="", random_action_min=0.1,
+                 random_action_decay=0.999995, n_neurons=64, future_reward_importance=0.95):
         self.memory = deque(maxlen=100000)
-        self.model_name = model_name
+        self.model_name = name_model
         self.use_existing_model = use_existing_model
         self.actions = ['hold', 'buy', 'sell']
         self.action_size = len(self.actions)
@@ -22,9 +22,9 @@ class Agent:
         self.epsilon_min = random_action_min  # we want the agent to explore at least this amount.
         self.epsilon_decay = random_action_decay  # we want to decrease the number of explorations as it gets good
         self.num_trains = 0
-        self.num_neurons = num_neurons
-        self.num_features = num_features  # normalized previous days
-        self.model = load_model("files/output/" + model_name) if use_existing_model else self._build_net()
+        self.num_neurons = n_neurons
+        self.num_features = n_features  # normalized previous days
+        self.model = load_model("files/output/" + name_model) if use_existing_model else self._build_net()
 
     def _build_net(self):
         model = Sequential()
