@@ -3,7 +3,8 @@ Project motivation:
 2. Uncertainty Modeling by applying high-level stochastic processes (Ito' calculos, SDE, etc.) 
 3. Applying cutting-edge techniques from DRL domain, such as: trust-regions, PPO to ACKTR and more. 
 
-
+# Video
+https://www.youtube.com/watch?v=SKhTeI_TRno
 
 # Data
 from https://finance.yahoo.com/quote/%5EGSPC?p=^GSPC

@@ -46,7 +46,7 @@ def run_dqn(name_asset, n_features, n_neurons, n_episodes, batch_size, random_ac
 
 if __name__ == "__main__":
     # Running example:
-    # python rl_dqn.py --stock_name '^GSPC_01' --num_features 1 --num_neurons 4 --episodes 1800 --batch_size 1
+    # python rl_dqn.py -na 'test_sinus' -ne 2000 -nf 20 -nn 64 -nb 20 
 
     import argparse
     parser = argparse.ArgumentParser()
