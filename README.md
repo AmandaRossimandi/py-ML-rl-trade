@@ -107,15 +107,17 @@ epsilon_decay- used to decrease the number of explorations as it gets good at tr
 - Install on Virtualenv (pip packages are defined on [requirements.txt](requirements.txt)):
 ```
 # Create a virtual environment
-virtualenv -p /usr/local/bin/python3 .
+virtualenv -p /usr/local/bin/python3 venv
 or 
-python -m venv .
+python -m venv venv
+
+# activate the virtual environment.
+source venv/bin/activate
 
 # create requirements.txt
 pip freeze > requirements.txt
 
 # install packages
-source pytrade/bin/activate
 pip install -r requirements.txt
 
 ```
@@ -140,7 +142,7 @@ pip install -r requirements.txt
     - docker run -it <yourImageName> /bin/bash
     - python rl_dqn.py   -na 'test_sinus' -ne 2000 -nf 20 -nn 64 -nb 20  (340min@t2, 225min@c5, profit161%)
     - python backtest.py -na 'test_sinus' -nm 'model_ep2000' -tf 0.      (profit : y$, z buys, z sells)
-    - python rl_dqn.py   -na '^GSPC_2011' -ne 20000 -nf 20 -nn 64 -nb 20 (1440min@pc)
+    - python rl_dqn.py   -na '^GSPC_2011' -ne 20000 -nf 20 -nn 64 -nb 20 (1440min@pc, x min@c5, profit x%)
     - python backtest.py -na '^GSPC_2011' -nm 'model_ep20000' -tf 0.     (profit : %125.664 , Total hold/buy/sell/notvalid trades: 0 / 55 / 55 / 123)
     - or....   
     - docker run <yourImageName>  -na 'test_sinus' -ne 2000 -nf 20 -nn 64 -nb 20  (300 min)

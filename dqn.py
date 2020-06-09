@@ -9,10 +9,10 @@ class Dqn:
         self.open_orders = []
         self.model_name = ''
 
-    def learn(self, data, n_episodes, n_features, batch_size, use_existing_model, random_action_min=0.1,
-              random_action_decay=0.99995, n_neurons=64, future_reward_importance=0.95):
+    def learn(self, data, name_model, n_episodes, n_features, batch_size, use_exploration,
+              random_action_min=0.1, random_action_decay=0.99995, n_neurons=64, future_reward_importance=0.95):
 
-        agent = Agent(n_features, use_existing_model, '', random_action_min, random_action_decay, n_neurons,
+        agent = Agent(n_features, use_exploration, name_model, random_action_min, random_action_decay, n_neurons,
                       future_reward_importance)
         l = len(data) - 1
         rewards_vs_episode = []

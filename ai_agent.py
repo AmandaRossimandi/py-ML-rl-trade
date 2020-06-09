@@ -9,11 +9,11 @@ from collections import deque
 
 
 class Agent:
-    def __init__(self, n_features, use_existing_model=False, name_model="", random_action_min=0.1,
+    def __init__(self, n_features, use_exploration=False, name_model="", random_action_min=0.1,
                  random_action_decay=0.999995, n_neurons=64, future_reward_importance=0.95):
         self.memory = deque(maxlen=100000)
         self.model_name = name_model
-        self.use_existing_model = use_existing_model
+        self.use_exploration = use_exploration
         self.actions = ['hold', 'buy', 'sell']
         self.action_size = len(self.actions)
         self.gamma = future_reward_importance  # discount rate, determines the importance of future rewards.
@@ -24,16 +24,20 @@ class Agent:
         self.num_trains = 0
         self.num_neurons = n_neurons
         self.num_features = n_features  # normalized previous days
-        self.model = load_model("files/output/" + name_model) if use_existing_model else self._build_net()
+        self.model =  self._nn_old(name_model) if name_model != '' else self._nn_new(n_features, n_neurons)
+        self.model.summary();
 
-    def _build_net(self):
+    def _nn_old(self, name_model=''):
+        model = load_model("files/output/" + name_model);
+        return model;
+
+    def _nn_new(self, n_features, n_neurons):
         model = Sequential()
-        model.add(Dense(units=np.maximum(int(self.num_neurons / 1), 1), activation="relu", input_dim=self.num_features))
-        model.add(Dense(units=np.maximum(int(self.num_neurons / 2), 1), activation="relu"))
-        model.add(Dense(units=np.maximum(int(self.num_neurons / 8), 1), activation="relu"))
+        model.add(Dense(units=np.maximum(int(n_neurons/ 1), 1), activation="relu", input_dim=n_features))
+        model.add(Dense(units=np.maximum(int(n_neurons/ 2), 1), activation="relu"))
+        model.add(Dense(units=np.maximum(int(n_neurons/ 8), 1), activation="relu"))
         model.add(Dense(units=self.action_size, activation="linear"))
         model.compile(loss="mse", optimizer=Adam(lr=0.001))
-        model.summary()
         return model
 
     def remember(self, state, action, reward, next_state, done):
@@ -44,7 +48,7 @@ class Agent:
     def choose_best_action(self, state):
 
         # exploring from time to time
-        if self.use_existing_model == False:
+        if self.use_exploration == True:
             prob_exploit = np.random.rand()
             if prob_exploit < self.epsilon:
                 random_action = random.randrange(self.action_size)

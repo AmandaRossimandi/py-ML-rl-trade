@@ -5,10 +5,10 @@ from utils import *
 import argparse
 
 
-def bt(data, n_features, use_existing_model, name_model):
+def bt(data, n_features, use_exploration, name_model):
     dqn = Dqn()
     dqn.open_orders = [data[0]]
-    agent = Agent(n_features, use_existing_model, name_model)
+    agent = Agent(n_features, use_exploration, name_model)
     state = dqn.get_state(data, n_features, n_features)
     total_profits = 0
     total_holds = 0
@@ -57,15 +57,17 @@ def main():
     name_asset = args.name_asset
     name_model = args.name_model
     trading_fee = args.trading_fee
-
+    if name_model == '' :
+        print( 'error: you must use existing model name')
+        exit(1)
     model_inst = load_model("files/output/" + name_model)
     num_features = model_inst.layers[0].input.shape.as_list()[1]
-    use_existing_model = True
+    use_exploration    = False#must use False
     data = getStockDataVec(name_asset)
     l = len(data) - 1
 
     print(f'starting back-testing model {name_model} on {name_asset} (file has {l} rows), features = {num_features} ')
-    bt(data, num_features, use_existing_model, name_model)
+    bt(data, num_features, use_exploration, name_model)
     print(f'finished back-testing model {name_model} on {name_asset} (file has {l} rows), features = {num_features} ')
 
 
